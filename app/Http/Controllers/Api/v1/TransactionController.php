@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\APIResponseTrait;
 use App\Repos\CustomerRepository;
+use App\Models\Transaction;
 use App\Services\CustomerTransactionService;
 use DB;
 
@@ -28,14 +29,14 @@ class TransactionController extends Controller
         }
 
         $transactions = Transaction::where('account_number', $account_no)
-            ->orderBy('transaction_date', 'desc')->paginate(20);
+            ->orderBy('transaction_time', 'desc')->paginate(20);
 
         return $this->success([
             'transactions' => $transactions,
         ]);
     }
 
-    public function show(Request $request, $ref)
+    public function show(Request $request, $account_no, $ref)
     {
         
         $transaction = Transaction::where('reference_id', $ref)->first();

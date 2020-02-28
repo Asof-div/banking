@@ -29,3 +29,17 @@ The User should be able to;
 
 run ./run-migration.sh
 this will run migration and preload the database with data.
+
+## Sample test enpoint
+
+method:post
+descption:credit an account
+url:localhost/banking/public/api/v1/customers/credit-account/2010000001?channel=USSD&narration=fgd ghj j fhg&type=Saving&amount=3000&date=2020-02-28
+
+method:post
+descption:debit an account
+url:localhost/banking/public/api/v1/customers/debit-account/2010000001?channel=POS&narration=fgd ghj j fhg&type=Saving&amount=3000&date=2020-02-28
+
+method:get
+descption:check balance
+url:localhost/banking/public/api/v1/customers/check-balance/2010000001

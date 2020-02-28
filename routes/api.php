@@ -27,7 +27,7 @@ Route::group(['prefix' => 'v1'], function(){
 
         Route::get('{account_no}', 'CustomerController@show');
         
-        Route::get('{account_no}/check-balance', 'CustomerController@checkBalance');
+        Route::get('check-balance/{account_no}', 'CustomerController@checkBalance');
         
         Route::put('update/{account_no}', 'CustomerController@update');
 
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'v1'], function(){
     
         Route::get('transactions/{account_no}', 'TransactionController@index');
 
-        Route::get('transactions/{ref}', 'TransactionController@show');
+        Route::get('transactions/{account_no}/{ref}', 'TransactionController@show');
 
         Route::post('credit-account/{account_no}', 'TransactionController@credit');
 
