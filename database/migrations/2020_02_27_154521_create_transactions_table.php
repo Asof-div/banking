@@ -22,8 +22,11 @@ class CreateTransactionsTable extends Migration
             $table->string('debit_or_credit');
             $table->string('narration');
             $table->string('reference_id');
+            $table->string('a_reference_id')->nullable();
             $table->timestamp('transaction_time')->nullable();
             $table->string('transaction_type');
+            $table->decimal('actual_amount_after_charge', 18, 2)->default(0.00);
+            $table->decimal('charge_fee', 18, 2)->default(0.00);
             $table->timestamp('value_date')->nullable();
             $table->string('balance_after')->nullable();
             $table->string('status')->nullable();

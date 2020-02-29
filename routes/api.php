@@ -25,7 +25,7 @@ Route::group(['prefix' => 'v1'], function(){
         
         Route::post('create', 'CustomerController@create');
 
-        Route::get('{account_no}', 'CustomerController@show');
+        Route::get('show/{account_no}', 'CustomerController@show');
         
         Route::get('check-balance/{account_no}', 'CustomerController@checkBalance');
         
@@ -37,13 +37,20 @@ Route::group(['prefix' => 'v1'], function(){
     
         Route::delete('delete/{account_no}', 'CustomerController@delete');
     
-        Route::get('transactions/{account_no}', 'TransactionController@index');
+        Route::get('transactions', 'TransactionController@index');
+
+        Route::get('transactions/{account_no}', 'TransactionController@custom');
 
         Route::get('transactions/{account_no}/{ref}', 'TransactionController@show');
 
+        Route::post('etransfer/{a_account_no}/{b_account_no}', 'TransactionController@etransfer');
+
         Route::post('credit-account/{account_no}', 'TransactionController@credit');
 
-        Route::post('debit-account/{account_no}', 'TransactionController@debit');
+        Route::post('atm-account/{account_no}', 'TransactionController@atm');
+        
+        Route::post('pos-account/{account_no}', 'TransactionController@pos');
+
 
     });
 

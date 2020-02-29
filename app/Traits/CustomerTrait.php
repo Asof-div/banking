@@ -53,7 +53,7 @@ trait CustomerTrait
         if($value_date->format('Y-m-d') == (new DateTime)->format('Y-m-d')){
 
             $account_balance->update([
-               'available_balance' => $account_balance->available_balance - $transaction->amount, 
+               'available_balance' => $account_balance->available_balance - $transaction->amount - $transaction->charge_fee, 
             ]);
             $transaction->update([
                 'status' => $transaction::SUCCESS_STATUS
@@ -64,8 +64,8 @@ trait CustomerTrait
 
         }else{
             $account_balance->update([
-               'available_balance' => $account_balance->available_balance - $transaction->amount, 
-               'hold_balance' => $account_balance->hold_balance + $transaction->amount, 
+               'available_balance' => $account_balance->available_balance - $transaction->amount - $transaction->charge_fee, 
+               'hold_balance' => $account_balance->hold_balance + $transaction->amount + $transaction->charge_fee, 
             ]);
             $transaction->update([
                 'status' => $transaction::HOLD_STATUS
